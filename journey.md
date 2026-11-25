@@ -124,7 +124,7 @@ This document tracks our chronological progress, architectural decisions, techni
     - *Why Chunk 2 Supercharges Search*:
       1. **BM25 Lexical Boost**: If an employee searches for an abbreviation (like "WFH" instead of "Telecommuting Guidelines", or "MFA" instead of "Authentication"), Chunk 2 matches the exact keyword immediately.
       2. **ChromaDB Semantic Boost**: Mathematically, a user's question vector is much closer in vector space to an FAQ question (*"What is the WFH policy?"*) than to an administrative compliance paragraph.
-      3. **Parent Attribution**: Because Chunk 2 carries the parent `doc_id`, a hit on Chunk 2 routes directly to the authoritative policy document, raising retrieval accuracy from ~70% to near 100%.
+      3. **Parent Document Resolution (Full Context Guarantee)**: Even when Chunk 2 acts as the winning search anchor, the retriever uses its `doc_store` mapping to automatically resolve the context back to **100% of the complete, unabridged policy body**. This guarantees the LLM receives every rule, deadline, and number without ever answering from a truncated 300-character snippet.
   - **The Two-Librarians Analogy (Reciprocal Rank Fusion - RRF)**:
     Imagine two expert librarians: Librarian A (Keyword Matcher) recommends 5 books, and Librarian B (Semantic Matcher) recommends 5 books. RRF is the scoring formula that compares both lists. If both librarians rank the same document #1, its score skyrockets. If only one recommends it, it gets a lower score.
   - **The Confidence Gate & Escalation Trigger**:
@@ -181,7 +181,7 @@ This document tracks our chronological progress, architectural decisions, techni
 | **AD-04** | Ticketing Integration | GitHub Issues API + Local SQLite Fallback | Real-world API integration that requires no paid enterprise licenses. SQLite fallback prevents failures if offline or running in mock mode. |
 | **AD-05** | Human-in-the-Loop | Explicit pre-submission confirmation gate | Mandatory requirement under Section 2.2.2; agent reviews ticket summary with employee before calling write API. |
 | **AD-06** | Python Packaging Strategy | Explicit `__init__.py` files at package roots | Added `src/__init__.py` and `src/rag/__init__.py` to designate directories as formal Python packages, allowing clean absolute imports throughout the application and test suites. |
-| **AD-07** | Dual-Chunking RAG Strategy | Policy Body Chunk + FAQ & Keyword Chunk | Solves the Query-Document Asymmetry problem. Chunk 1 stores detailed policy procedures and numbers; Chunk 2 indexes employee questions, synonyms, and acronyms to bridge the semantic gap and maximize retrieval accuracy. |
+| **AD-07** | Dual-Chunking & Parent Document Retrieval | Search Anchoring (Chunk 2) + Full Parent Document Resolution | Solves the Query-Document Asymmetry problem. Chunk 2 indexes employee questions, synonyms, and acronyms to act as a high-precision search anchor, while the retriever automatically resolves to 100% of the complete policy body (`doc_store`) when formatting context for the LLM. |
 
 ---
 

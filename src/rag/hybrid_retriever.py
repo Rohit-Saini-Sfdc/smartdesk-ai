@@ -97,6 +97,19 @@ class HybridRetriever:
             except Exception as e:
                 logger.warning(f"Failed to load deliberate gaps: {e}")
 
+        # Load canonical document store for parent document retrieval
+        kb_path = base_dir / "data" / "knowledge_base" / "kb_entries.json"
+        self.doc_store: Dict[str, Dict[str, Any]] = {}
+        if kb_path.exists():
+            try:
+                import json
+                with open(kb_path, "r", encoding="utf-8") as f:
+                    entries = json.load(f)
+                    self.doc_store = {e["id"]: e for e in entries}
+                logger.info(f"Loaded {len(self.doc_store)} parent documents into doc_store.")
+            except Exception as e:
+                logger.warning(f"Failed to load doc_store: {e}")
+
         # Initialize ChromaDB client
         self.chroma_client = chromadb.PersistentClient(path=str(self.chroma_dir))
         self.collection = self.chroma_client.get_or_create_collection(name=self.collection_name)
@@ -324,11 +337,17 @@ class HybridRetriever:
 
         suggested_action = "escalate_to_ticket" if escalation_needed else "answer"
 
-        # 5. Format Context Block with Source Citations
+        # 5. Format Context Block with Source Citations (Parent Document Resolution)
         context_parts = []
         for i, c in enumerate(retrieved_chunks, 1):
             source_header = f"[Source {i}: {c.doc_id} — {c.title} (Domain: {c.domain} | Category: {c.category})]"
-            context_parts.append(f"{source_header}\n{c.text}\n")
+            # Resolve to the complete parent document content so the LLM gets 100% of the policy rules
+            parent_doc = self.doc_store.get(c.doc_id)
+            if parent_doc and "content" in parent_doc:
+                body_content = f"Policy Content: {parent_doc['content']}"
+            else:
+                body_content = c.text
+            context_parts.append(f"{source_header}\n{body_content}\n")
 
         formatted_context = "\n---\n".join(context_parts) if context_parts else "No relevant context found."
 
