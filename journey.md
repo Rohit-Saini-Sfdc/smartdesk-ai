@@ -206,6 +206,52 @@ This document tracks our chronological progress, architectural decisions, techni
   .venv/bin/python tests/eval_retrieval.py
   ```
 
+### Milestone 4: Step 3 — Dual-Backend Ticketing Service Adapter
+- **Date**: 2026-11-25
+- **Overview & Architectural Intent**:
+  - Enterprise conversational agents require robust read and write operational tools. An agent that only answers questions is just a search engine; an operational support agent must take real actions, such as logging service requests, tracking statuses, and recording notes.
+  - While Jira, Zendesk, or ServiceNow are typical enterprise ticketing systems, they require expensive paid subscriptions and complex OAuth configurations.
+  - To balance real-world API fidelity with zero-configuration reproducibility, we engineered a **Resilient Dual-Backend Ticketing Architecture**:
+    1. **Primary Cloud Integration (GitHub Issues REST API v3)**: Issues serve as living support tickets with titles, markdown descriptions, auto-assigned labels (`smartdesk-ticket`, `priority:high`, `it-support`), and two-way technician comments.
+    2. **Local Failover Engine (SQLite Relational Database)**: A zero-dependency local database (`data/tickets.db`) with full transactional integrity, automated indexing on `employee_email` and `ticket_ref`, and pre-seeded sample tickets.
+    3. **Resilient Facade Adapter (`TicketingService`)**: Sits between agent tools and backends. If GitHub credentials are missing, or if GitHub encounters network timeouts or rate limits, the service automatically fails over to SQLite without crashing or surfacing cryptic API errors to the employee.
+
+- **Component Implementation Details**:
+  - **Data Models (`src/ticketing/models.py`)**:
+    - `TicketStatus`: Strict enumeration (`Open`, `In Progress`, `Resolved`, `Closed`).
+    - `TicketPriority`: Urgency mapping (`Low`, `Medium`, `High`, `Critical`).
+    - `TicketCategory`: Domain classification (`IT Support`, `HR Policies`, `Workplace & Facilities`, `Physical Security`, `General Operations`).
+    - `TicketCreateRequest`: Validated Pydantic schema for ticket generation (`employee_email`, `title`, `description`, `category`, `priority`).
+    - `TicketComment`: Timestamped technician or agent note (`author`, `comment`, `created_at`).
+    - `TicketResponse`: Unified return schema containing ticket ID, full details, comments list, web URL, and active backend tag.
+  - **SQLite Local Backend (`src/ticketing/sqlite_backend.py`)**:
+    - Manages relational tables `tickets` and `comments` with foreign key constraints and indexed email lookups.
+    - Pre-seeds realistic operational data for testing Flow C status queries:
+      - Ticket `IT-2847` for `jane.doe@novatech.com`: *"Monitor Flickering Issue"* (`In Progress`, with technician comment from Marcus Vance noting 4K Dell UltraSharp monitor ordered).
+      - Ticket `HR-1092` for `alex.smith@novatech.com`: *"Parental Leave Schedule Approval"* (`Open`, with People Partner comment).
+    - Generates standardized human-readable references: `IT-3001`, `HR-3002`.
+  - **GitHub Issues Backend (`src/ticketing/github_backend.py`)**:
+    - Integrates with GitHub REST API endpoints (`/issues`, `/issues/{number}/comments`).
+    - **Structured Markdown Metadata Embeddings**: Injects a machine-readable JSON header within an HTML comment (`<!-- smartdesk_meta: {...} -->`) at the top of the issue body. This allows employee email, category, and priority to be losslessly recovered across GitHub API responses without polluting the rendered issue view in the GitHub web interface.
+    - Automatic issue parsing, category label assignment, and comment retrieval.
+  - **Ticketing Service Facade (`src/ticketing/service.py`)**:
+    - Manages connection testing, automated failover, and dual-backend aggregation.
+    - Prefix-based query routing: routes `IT-` and `HR-` tickets to SQLite first, and `GH-` or `#` numeric tickets to GitHub first.
+    - `get_tickets_by_email()` queries both systems, deduplicating records and ordering chronologically.
+  - **Configuration & Test Automation**:
+    - Created `pytest.ini` with `pythonpath = .` for seamless test execution.
+    - Developed `tests/test_ticketing.py` with 7 automated unit and integration tests covering SQLite seed data, creation, comments, GitHub parsing, unconfigured credential handling, local service execution, and mocked network failover.
+
+- **Verification Results**:
+  - `7 / 7` unit and integration tests passing in `0.25s`.
+  - Zero forbidden terminology identified across all files.
+
+- **Commands Executed in Step 3**:
+  ```bash
+  # Run automated ticketing test suite
+  .venv/bin/pytest tests/test_ticketing.py -v
+  ```
+
 ---
 
 ## 3. Architecture & Design Decisions Log
@@ -219,6 +265,7 @@ This document tracks our chronological progress, architectural decisions, techni
 | **AD-05** | Human-in-the-Loop | Explicit pre-submission confirmation gate | Mandatory requirement under Section 2.2.2; agent reviews ticket summary with employee before calling write API. |
 | **AD-06** | Python Packaging Strategy | Explicit `__init__.py` files at package roots | Added `src/__init__.py` and `src/rag/__init__.py` to designate directories as formal Python packages, allowing clean absolute imports throughout the application and test suites. |
 | **AD-07** | Dual-Chunking & Parent Document Retrieval | Search Anchoring (Chunk 2) + Full Parent Document Resolution | Solves the Query-Document Asymmetry problem. Chunk 2 indexes employee questions, synonyms, and acronyms to act as a high-precision search anchor, while the retriever automatically resolves to 100% of the complete policy body (`doc_store`) when formatting context for the LLM. |
+| **AD-08** | Ticketing Resiliency & Metadata Embedding | Dual-Backend Facade + Embedded HTML JSON Comments | Decouples agent tools from external API availability. Injecting `<!-- smartdesk_meta: {...} -->` into GitHub issues allows lossless storage of enterprise metadata (employee corporate email, category, priority) directly inside standard GitHub issue threads without requiring external database synchronization. |
 
 ---
 
@@ -226,8 +273,8 @@ This document tracks our chronological progress, architectural decisions, techni
 
 - [x] **Step 1: Knowledge Base & Escalation Gaps Curation** (Complete)
 - [x] **Step 2: Build Hybrid RAG Pipeline & Retrieval Evaluation** (Complete — 99% Hit@1, 100% Hit@3, 0.995 MRR)
-- [ ] **Step 3: Implement Ticketing Service Adapter (GitHub Issues + SQLite Fallback)** *(Next)*
-- [ ] **Step 4: Build Google ADK Multi-Tool Agent (GPT-4o via LiteLLM)**
+- [x] **Step 3: Implement Ticketing Service Adapter** (Complete — GitHub Issues + SQLite fallback, 7/7 tests passed)
+- [ ] **Step 4: Build Google ADK Multi-Tool Agent (GPT-4o via LiteLLM)** *(Next)*
 - [ ] **Step 5: Develop Streamlit Multi-Tab Application**
 - [ ] **Step 6: End-to-End Evaluation & Testing Suite (ToDo Tasks)**:
   - [ ] *Generation Evaluation (Ragas / LangSmith)*: Measure **Faithfulness (Grounding / Zero-Hallucination)** and **Answer Relevancy** on LLM-generated answers.
