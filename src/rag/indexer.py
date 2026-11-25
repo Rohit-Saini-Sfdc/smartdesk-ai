@@ -15,8 +15,10 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import chromadb
 from chromadb.config import Settings
+from dotenv import load_dotenv
 from rank_bm25 import BM25Okapi
 
+load_dotenv()
 logger = logging.getLogger(__name__)
 
 

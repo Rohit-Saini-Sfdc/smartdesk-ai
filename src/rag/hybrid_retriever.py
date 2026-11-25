@@ -12,10 +12,12 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import chromadb
+from dotenv import load_dotenv
 from rank_bm25 import BM25Okapi
 
 from .indexer import KnowledgeBaseIndexer, generate_fallback_embedding, simple_tokenize
 
+load_dotenv()
 logger = logging.getLogger(__name__)
 
 

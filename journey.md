@@ -150,27 +150,35 @@ This document tracks our chronological progress, architectural decisions, techni
 | *"Can I take a 9-month unpaid sabbatical?"* | **0.150** (Low) | **Escalate to Ticket: True** | *(Flagged for HR BP Ticket)* | ✅ PASS |
 | *"I need root access to production AWS database"* | **0.150** (Low) | **Escalate to Ticket: True** | *(Flagged for DevSecOps Ticket)* | ✅ PASS |
 
+- **Step 2 Retrieval Evaluation Suite (`tests/eval_retrieval.py`)**:
+  - Implemented an automated quantitative benchmarking suite testing **118 total queries** (100 in-scope policy questions across all 50 documents + 18 deliberate gap escalation queries) using live **OpenAI `text-embedding-3-small`** embeddings and BM25.
+  - **Benchmark Results**:
+    - **Total Queries Evaluated**: 118 (100 in-scope + 18 gaps)
+    - **Hit Rate @ 1 (Top-1 Accuracy)**: **99.0%** (99 / 100)
+    - **Hit Rate @ 3 (Top-3 Accuracy)**: **100.0%** (100 / 100)
+    - **Mean Reciprocal Rank (MRR)**: **0.995**
+    - **Escalation Recall (Gap Detection)**: **100.0%** (18 / 18 gaps caught)
+    - **False Escalation Rate**: 3.0%
+    - **Average Retrieval Latency**: 261.91 ms (including OpenAI API roundtrip)
+  - Results exported to machine-readable JSON: [`data/retrieval_eval_report.json`](file:///Users/rohitsaini/Documents/FDE/smartdesk-ai/data/retrieval_eval_report.json).
+
 - **Deliverables & Files Created**:
   - `src/__init__.py`: Package initialization file marking `src` as a root Python package for modular, absolute imports.
   - `src/rag/__init__.py`: Package initialization file exposing `KnowledgeBaseIndexer`, `HybridRetriever`, and `RetrievalResult` for clean import syntax (`from src.rag import HybridRetriever`).
-  - `src/rag/indexer.py`: Chunking and indexing logic for ChromaDB & BM25.
-  - `src/rag/hybrid_retriever.py`: Hybrid search, RRF fusion, confidence gating, and escalation detection.
+  - `src/rag/indexer.py`: Chunking and indexing logic for ChromaDB & BM25 with automatic `.env` loading.
+  - `src/rag/hybrid_retriever.py`: Dual search, RRF fusion, confidence gating, and parent document resolution.
+  - `tests/eval_retrieval.py`: Quantitative retrieval evaluation suite (Hit@1, Hit@3, MRR, Escalation Recall).
+  - `data/retrieval_eval_report.json`: Benchmark evaluation report artifact.
   - `data/chroma_db/`: Persistent vector store database containing all 100 indexed chunks.
   - `.gitignore`: Configured to exclude virtual environments (`.venv/`), environment variables/secrets (`.env`), machine-specific vector store binaries (`data/chroma_db/`), and OS caches.
 
 - **Commands Executed in Step 2**:
   ```bash
-  # 1. Execute indexing pipeline
+  # 1. Execute indexing pipeline with OpenAI text-embedding-3-small
   .venv/bin/python src/rag/indexer.py
 
-  # 2. Run retrieval & confidence benchmark
-  .venv/bin/python -c "
-  import sys; sys.path.append('.')
-  from src.rag.hybrid_retriever import HybridRetriever
-  retriever = HybridRetriever()
-  res = retriever.retrieve('How do I reset my password?')
-  print(res.suggested_action, res.confidence)
-  "
+  # 2. Run automated quantitative retrieval evaluation benchmark
+  .venv/bin/python tests/eval_retrieval.py
   ```
 
 ---
@@ -192,9 +200,13 @@ This document tracks our chronological progress, architectural decisions, techni
 ## 4. Current Status & Next Steps
 
 - [x] **Step 1: Knowledge Base & Escalation Gaps Curation** (Complete)
-- [x] **Step 2: Build Hybrid RAG Pipeline (ChromaDB + BM25 + RRF Re-ranker)** (Complete)
+- [x] **Step 2: Build Hybrid RAG Pipeline & Retrieval Evaluation** (Complete — 99% Hit@1, 100% Hit@3, 0.995 MRR)
 - [ ] **Step 3: Implement Ticketing Service Adapter (GitHub Issues + SQLite Fallback)** *(Next)*
 - [ ] **Step 4: Build Google ADK Multi-Tool Agent (GPT-4o via LiteLLM)**
 - [ ] **Step 5: Develop Streamlit Multi-Tab Application**
-- [ ] **Step 6: Add Pytest Suite & RAG Evaluation**
+- [ ] **Step 6: End-to-End Evaluation & Testing Suite (ToDo Tasks)**:
+  - [ ] *Generation Evaluation (Ragas / LangSmith)*: Measure **Faithfulness (Grounding / Zero-Hallucination)** and **Answer Relevancy** on LLM-generated answers.
+  - [ ] *LangSmith Tracing Verification*: Confirm all multi-turn execution traces, latency, and token consumption are recorded in the LangSmith dashboard.
+  - [ ] *Integration Tests (Pytest)*: Test end-to-end multi-turn flows (KB answer, ticket creation with HITL confirmation, and ticket status lookup).
+  - [ ] *Offline Failover Verification*: Verify seamless fallback to SQLite when external APIs are disconnected.
 - [ ] **Step 7: Finalize Documentation, Architecture Diagrams & Deployment Setup**
