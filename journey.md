@@ -151,7 +151,21 @@ This document tracks our chronological progress, architectural decisions, techni
 | *"I need root access to production AWS database"* | **0.150** (Low) | **Escalate to Ticket: True** | *(Flagged for DevSecOps Ticket)* | ✅ PASS |
 
 - **Step 2 Retrieval Evaluation Suite (`tests/eval_retrieval.py`)**:
-  - Implemented an automated quantitative benchmarking suite testing **118 total queries** (100 in-scope policy questions across all 50 documents + 18 deliberate gap escalation queries) using live **OpenAI `text-embedding-3-small`** embeddings and BM25.
+  - **The Evaluation Logic (What We Are Doing & How Content is Tested)**:
+    - *The Purpose*: Before connecting the chatbot LLM in Step 4, we must prove with quantitative data that the search engine finds the exact right policy documents and reliably detects unanswerable queries.
+    - *Which Content is Evaluated*:
+      1. **In-Scope Policy Queries (100 Questions)**: We take the pre-defined `sample_questions` for all 50 policies in `data/knowledge_base/kb_entries.json` (2 questions $\times$ 50 policies). We already know the exact ground truth: e.g., *"How do I reset my password?"* must retrieve Document `IT-01`.
+      2. **Out-of-Scope Deliberate Gap Queries (18 Questions)**: We take the 18 trigger questions across the 6 engineered gaps in `data/knowledge_base/deliberate_gaps.json` (e.g., *"My laptop screen is flickering constantly"*). We already know the ground truth: the system must not guess; it must flag `escalation_needed = True`.
+    - *How Each Query is Tested*:
+      - The question is fed to `retriever.retrieve(query)`.
+      - The retriever generates dense embeddings via OpenAI `text-embedding-3-small` and tokenizes for BM25, fuses candidates via RRF, and returns the top 3 documents.
+      - The test script checks purely mathematical ground-truth conditions: `is_hit_1 = (retrieved_id == expected_id)`, `mrr = 1 / rank`, and `is_escalation = (result.escalation_needed == True)`.
+  - **Does this Evaluation Use a Generative LLM? (Embedding Model vs. Generative LLM)**:
+    - *No, it does NOT use a Generative LLM for answers or judging.*
+    - *The Technical Distinction*:
+      - **Embedding Model (`text-embedding-3-small`)**: A specialized neural network whose only job is to convert text into mathematical coordinates (a 1,536-dimensional vector). It cannot talk, write sentences, or reason. It is used here solely to locate documents in vector space.
+      - **Generative LLM (OpenAI GPT-4o)**: A conversational reasoning model that writes text. GPT-4o is **not** used in this retrieval test; it will be used in Step 4 (to chat with employees) and in Step 6 (as an LLM-as-a-Judge for Ragas faithfulness evaluation).
+    - *Why this separation matters*: Evaluating the retriever independently with deterministic math gives an unbiased, objective score and costs less than \$0.001 to evaluate 118 queries.
   - **Detailed Explanation of Evaluated Metrics**:
     1. **Hit Rate @ 1 (Top-1 Accuracy = 99.0%)**:
        - *What it measures*: Whether the single highest-ranked document returned by the hybrid engine was the exact correct policy document.
