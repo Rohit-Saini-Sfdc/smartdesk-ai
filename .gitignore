@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets
+.env
+.env.local
+*.env
+
+# Local Databases & Vector Stores (re-generated via python src/rag/indexer.py)
+data/chroma_db/
+*.sqlite3
+*.db
+
+# OS Artifacts
+.DS_Store
+Thumbs.db
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp

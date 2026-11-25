@@ -1,0 +1,86 @@
+[
+  {
+    "gap_id": "GAP-01",
+    "domain": "IT Support",
+    "category": "Hardware Malfunction / Physical Damage",
+    "trigger_queries": [
+      "My laptop screen is flickering constantly and going black.",
+      "I spilled coffee on my keyboard and some keys don't work.",
+      "My laptop battery is swelling and overheating."
+    ],
+    "expected_action": "escalate_to_ticket",
+    "expected_category": "IT Support",
+    "expected_priority": "High",
+    "reason": "Physical hardware damage or defective display cannot be resolved via software documentation and requires an IT hardware technician."
+  },
+  {
+    "gap_id": "GAP-02",
+    "domain": "Workplace & Facilities",
+    "category": "Parking & Vehicle Access",
+    "trigger_queries": [
+      "How do I reserve a parking spot in the building basement?",
+      "Where are the electric vehicle (EV) charging stations and how do I register my car?",
+      "Can I get an overnight parking permit for my car at the office?"
+    ],
+    "expected_action": "escalate_to_ticket",
+    "expected_category": "Workplace Operations / Facilities",
+    "expected_priority": "Low",
+    "reason": "Office parking spaces and EV charging spots are allocated on a site-by-site lottery by building management and are not in the digital help desk KB."
+  },
+  {
+    "gap_id": "GAP-03",
+    "domain": "HR Policies",
+    "category": "Extended Sabbatical / Unpaid Leave of Absence",
+    "trigger_queries": [
+      "Can I take a 9-month unpaid sabbatical to travel around the world?",
+      "How do I apply for a 1-year personal sabbatical leave?",
+      "What is the policy for taking a sabbatical to attend graduate school?"
+    ],
+    "expected_action": "escalate_to_ticket",
+    "expected_category": "HR Policies",
+    "expected_priority": "Medium",
+    "reason": "Extended sabbaticals beyond standard leaves require special review from HR leadership and Executive Vice President approval."
+  },
+  {
+    "gap_id": "GAP-04",
+    "domain": "HR Policies / Legal",
+    "category": "Immigration & Visa Sponsorship Transfer",
+    "trigger_queries": [
+      "How do I transfer my H-1B visa or apply for permanent residency / green card sponsorship?",
+      "My visa expires next month and I need company sponsorship documents.",
+      "Can NovaTech sponsor an O-1 or EB-2 visa for me?"
+    ],
+    "expected_action": "escalate_to_ticket",
+    "expected_category": "HR Policies / Immigration",
+    "expected_priority": "High",
+    "reason": "Immigration, visa transfers, and green card filings involve legal counsel and case-specific confidential employee documentation."
+  },
+  {
+    "gap_id": "GAP-05",
+    "domain": "IT Support / DevSecOps",
+    "category": "Production Infrastructure Access",
+    "trigger_queries": [
+      "I need root access to the production AWS Postgres database to fix customer data.",
+      "Can you grant me access to production Kubernetes cluster secrets?",
+      "I need SSH access to production web servers."
+    ],
+    "expected_action": "escalate_to_ticket",
+    "expected_category": "IT Support / DevSecOps",
+    "expected_priority": "Critical",
+    "reason": "Production access is strictly audited under SOC2 and requires change control board and VP Engineering approval."
+  },
+  {
+    "gap_id": "GAP-06",
+    "domain": "Physical Security",
+    "category": "Lost Building Access Card / Lockout",
+    "trigger_queries": [
+      "I lost my physical building access card and I am locked outside the building after hours.",
+      "Where do I report a stolen office badge?",
+      "Can someone buzz me into the office building at 11 PM?"
+    ],
+    "expected_action": "escalate_to_ticket",
+    "expected_category": "Physical Security",
+    "expected_priority": "High",
+    "reason": "Lost credentials and after-hours physical security breaches require immediate dispatch to physical security guards."
+  }
+]

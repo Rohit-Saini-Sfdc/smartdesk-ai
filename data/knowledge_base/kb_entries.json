@@ -1,0 +1,943 @@
+[
+  {
+    "id": "IT-01",
+    "domain": "IT Support",
+    "category": "Account Access & Authentication",
+    "title": "Self-Service Password Reset (SSPR) and Account Unlock",
+    "keywords": [
+      "password reset",
+      "forgot password",
+      "unlock account",
+      "sspr",
+      "okta reset"
+    ],
+    "content": "All NovaTech employees can reset their corporate Active Directory / Okta password via the Self-Service Password Portal at https://passwords.novatech.internal. If your account is locked due to multiple failed attempts, visit the portal, click 'Unlock Account', and complete verification via your registered Duo MFA mobile app or SMS code. Passwords must be at least 14 characters, contain uppercase, lowercase, numbers, and a special character, and cannot reuse any of your last 5 passwords. If you do not have access to your registered MFA device, contact the 24/7 IT Helpdesk at extension 4357 (HELP) or submit an IT ticket.",
+    "sample_questions": [
+      "How do I reset my password?",
+      "What should I do if my Okta account is locked?",
+      "What are the password complexity requirements?"
+    ]
+  },
+  {
+    "id": "IT-02",
+    "domain": "IT Support",
+    "category": "Network & Remote Access",
+    "title": "Corporate VPN Configuration with GlobalProtect",
+    "keywords": [
+      "vpn",
+      "globalprotect",
+      "remote access",
+      "vpn connection error",
+      "split tunneling"
+    ],
+    "content": "Remote employees must connect to the corporate network using Palo Alto GlobalProtect VPN. To install or configure: 1. Launch the GlobalProtect agent from your system tray or application folder. 2. Enter portal address 'vpn.novatech.com'. 3. Authenticate using your NovaTech Single Sign-On (SSO) credentials followed by Duo MFA push. GlobalProtect operates with split-tunneling enabled by default; corporate internal resources (staging, Jira, internal wikis) are routed through the VPN tunnel, while public internet traffic (Zoom, YouTube, web browsing) bypasses it. If you receive error 'Gateway Not Reachable', verify your local internet connection, restart the GlobalProtect service, and verify that port 443/IPSec is not blocked by your ISP.",
+    "sample_questions": [
+      "How do I connect to the VPN?",
+      "How do I connect to the corporate VPN?",
+      "What is the GlobalProtect portal address?",
+      "Why is my GlobalProtect VPN giving 'Gateway Not Reachable'?"
+    ]
+  },
+  {
+    "id": "IT-03",
+    "domain": "IT Support",
+    "category": "Software Provisioning",
+    "title": "Software License Request Process and Approved Catalog",
+    "keywords": [
+      "software request",
+      "license",
+      "figma",
+      "jetbrains",
+      "adobe",
+      "request software"
+    ],
+    "content": "NovaTech provides standard pre-approved software via the Self-Service App Catalog (Jamf Self Service on macOS, Company Portal on Windows). Pre-approved software includes Google Chrome, Slack, Zoom, VS Code, Notion, Docker Desktop, and Postman, which can be installed immediately without manager approval. For licensed or paid tools (e.g., JetBrains All Products, Figma Professional, Adobe Creative Cloud, Tableau Desktop, GitHub Copilot Enterprise), submit a request via the IT Service Portal under 'Software Catalog'. Software requests require approval from your direct manager and the IT Asset Management team. Turnaround time for license provisioning is typically 24-48 business hours.",
+    "sample_questions": [
+      "How do I request a software licence?",
+      "How do I request a software license?",
+      "How do I request a JetBrains or Figma license?",
+      "Can I install software without manager approval?",
+      "Where do I find the Self-Service software catalog?"
+    ]
+  },
+  {
+    "id": "IT-04",
+    "domain": "IT Support",
+    "category": "Account Access & Authentication",
+    "title": "Multi-Factor Authentication (MFA) Setup and Device Transfer",
+    "keywords": [
+      "mfa",
+      "duo push",
+      "two factor",
+      "new phone mfa",
+      "transfer duo"
+    ],
+    "content": "Multi-Factor Authentication (MFA) is strictly mandatory for all NovaTech accounts using Duo Security. When logging in, approve the Duo Mobile push notification or enter the 6-digit TOTP code. If you get a new mobile device or phone number: 1. If you still have your old phone, log in to https://identity.novatech.internal/duo-settings, click 'Add a new device', and scan the QR code on your new phone. 2. If you lost your previous device or wiped it without registering a backup, you must complete a video identity verification call with the IT Service Desk to generate a temporary 24-hour bypass code.",
+    "sample_questions": [
+      "How do I transfer Duo MFA to a new phone?",
+      "What if I lost my phone with Duo authenticator?",
+      "Is MFA mandatory for all systems?"
+    ]
+  },
+  {
+    "id": "IT-05",
+    "domain": "IT Support",
+    "category": "Network & Remote Access",
+    "title": "Office Wi-Fi Networks and Guest Access Guidelines",
+    "keywords": [
+      "wifi",
+      "office wifi",
+      "guest wifi",
+      "novatech-corp",
+      "wireless password"
+    ],
+    "content": "In all NovaTech physical offices, two primary wireless networks are broadcast: 1. 'NovaTech-Corporate': Dedicated to company-managed laptops with installed 802.1X certificates. Connect by selecting WPA3-Enterprise and authenticating with your corporate username and password. Do not connect personal smartphones or smart devices to this network. 2. 'NovaTech-Guest': Intended for visitors, contractors, and personal mobile devices. Connect to 'NovaTech-Guest', open a browser to view the captive portal, enter your email and host employee name, and accept the acceptable use terms. Guest sessions expire every 24 hours.",
+    "sample_questions": [
+      "How do I connect to the office Wi-Fi on my laptop?",
+      "Can visitors connect to Wi-Fi?",
+      "Can I connect my personal phone to NovaTech-Corporate Wi-Fi?"
+    ]
+  },
+  {
+    "id": "IT-06",
+    "domain": "IT Support",
+    "category": "Email & Communication",
+    "title": "Corporate Email and Google Workspace Setup on Mobile Devices",
+    "keywords": [
+      "email setup",
+      "mobile email",
+      "gmail app",
+      "work profile",
+      "outlook mobile"
+    ],
+    "content": "NovaTech uses Google Workspace Enterprise for corporate email and calendar. To configure work email on your mobile phone: 1. Download the official Google Gmail and Google Calendar apps from the iOS App Store or Google Play Store. 2. Choose 'Add Account', enter your @novatech.com email, and complete Okta SSO + Duo MFA. 3. Mobile Device Management (MDM): You will be prompted to install the Google Device Policy profile (iOS) or set up an Android Work Profile. Personal data and corporate data remain completely isolated. Company security policy enforces an alphanumeric lock screen PIN (minimum 6 digits) or biometric FaceID/fingerprint.",
+    "sample_questions": [
+      "How do I set up company email on my phone?",
+      "Does NovaTech require an MDM profile for mobile email?",
+      "Can IT see my personal photos if I add my work email to my phone?"
+    ]
+  },
+  {
+    "id": "IT-07",
+    "domain": "IT Support",
+    "category": "Hardware & Equipment",
+    "title": "Hardware Refresh Cycle and Standard Laptop Specifications",
+    "keywords": [
+      "laptop refresh",
+      "hardware upgrade",
+      "macbook refresh",
+      "laptop replacement cycle"
+    ],
+    "content": "NovaTech standard employee laptops operate on a 36-month (3-year) hardware refresh cycle. When your machine reaches 33 months of service, the IT Asset Management system automatically notifies you and your manager with an upgrade requisition link. Standard engineering profiles receive 16-inch Apple MacBook Pro (M3/M4 Pro, 36GB RAM, 1TB SSD) or Dell XPS 15 (i7/i9, 32GB RAM). Non-engineering roles receive 14-inch Apple MacBook Air (M3, 16GB RAM) or Lenovo ThinkPad X1 Carbon. Early replacements are only authorized in cases of verified catastrophic hardware failure or role changes requiring upgraded compute specifications.",
+    "sample_questions": [
+      "When am I eligible for a new laptop?",
+      "What is the standard hardware refresh cycle?",
+      "What laptops are provided for software engineers?"
+    ]
+  },
+  {
+    "id": "IT-08",
+    "domain": "IT Support",
+    "category": "Security & Compliance",
+    "title": "Information Security Incident and Phishing Reporting",
+    "keywords": [
+      "phishing",
+      "suspicious email",
+      "report security",
+      "security incident",
+      "compromised"
+    ],
+    "content": "If you receive a suspicious email, SMS, or Slack message, or suspect your machine or credentials have been compromised: 1. Suspected Phishing: Click the 'FishAlarm / Report Phishing' button directly in the Gmail UI. This immediately alerts the Security Operations Center (SOC) and purges similar messages from other mailboxes. Do not click links or download attachments. 2. Potential Credential Compromise / Malware: Immediately disconnect your computer from Wi-Fi/Ethernet, lock the device, and alert the Security Incident Response Team (SIRT) via emergency hotline +1-800-555-SIRT or email security-alert@novatech.com.",
+    "sample_questions": [
+      "How do I report a phishing email?",
+      "What should I do if I accidentally clicked a phishing link?",
+      "Who do I contact for urgent security incidents?"
+    ]
+  },
+  {
+    "id": "IT-09",
+    "domain": "IT Support",
+    "category": "Security & Compliance",
+    "title": "Local Administrator Rights and Privilege Management (Admin By Request)",
+    "keywords": [
+      "admin rights",
+      "sudo access",
+      "admin by request",
+      "root access"
+    ],
+    "content": "In compliance with SOC2 Type II and ISO 27001 standards, permanent local administrator / root privileges are disabled on all corporate endpoints. If you need elevated permissions to install developer libraries, configure Docker, or modify system settings: 1. On macOS: Open 'Admin By Request' from your menu bar and select 'Request Administrator Access'. Provide a valid business reason. Elevated sessions are auto-approved for pre-authorized developer tools for up to 30 minutes. 2. On Windows: Right-click the installer and choose 'Run with Admin By Request'. Session activities are audited and logged for compliance.",
+    "sample_questions": [
+      "How do I get temporary admin or sudo access?",
+      "Why don't I have permanent root privileges on my work laptop?",
+      "How long does an Admin By Request session last?"
+    ]
+  },
+  {
+    "id": "IT-10",
+    "domain": "IT Support",
+    "category": "Collaboration Tools",
+    "title": "Slack and Zoom Enterprise Workspace Guidelines",
+    "keywords": [
+      "slack guidelines",
+      "zoom enterprise",
+      "slack channels",
+      "zoom recording"
+    ],
+    "content": "NovaTech uses Slack Enterprise Grid and Zoom Business for company communications. Guidelines: 1. Slack Channels: Use public channels (#proj-, #team-, #help-) by default to foster transparency. Private channels should be reserved for sensitive personnel, legal, or financial matters. Slack messages are retained for 1 year per corporate archiving policies. 2. Zoom: All employees have a Pro license supporting meetings up to 300 participants. Cloud recordings must be stored in Zoom Cloud and are auto-deleted after 90 days. External guests must remain in the waiting room until admitted by the host.",
+    "sample_questions": [
+      "What are the Slack channel naming conventions?",
+      "How long are Zoom cloud recordings kept?",
+      "Do all employees have unlimited Zoom meeting licenses?"
+    ]
+  },
+  {
+    "id": "IT-11",
+    "domain": "IT Support",
+    "category": "Data Management & Storage",
+    "title": "Corporate Cloud Storage and Google Drive Quotas",
+    "keywords": [
+      "google drive storage",
+      "onedrive",
+      "storage limit",
+      "backup laptop"
+    ],
+    "content": "All employee accounts include 2TB of cloud storage via Google Drive. Employees should store all working documents, presentations, and project files on Google Shared Drives rather than individual personal drives to prevent orphaned files when employees depart. Automated cloud backup: Code repositories must be pushed to corporate GitHub Enterprise; local Git branches are not backed up by IT. Personal files (music, movies, personal family photos) are prohibited on corporate storage drives.",
+    "sample_questions": [
+      "What is the storage limit for my Google Drive?",
+      "Are my local desktop files automatically backed up?",
+      "Where should team files be stored?"
+    ]
+  },
+  {
+    "id": "IT-12",
+    "domain": "IT Support",
+    "category": "Hardware & Equipment",
+    "title": "Remote Work IT Equipment Stipend and Ordering",
+    "keywords": [
+      "home office stipend",
+      "wfh equipment",
+      "monitor allowance",
+      "ergonomic accessories"
+    ],
+    "content": "Full-time remote and hybrid employees are eligible for a one-time Home Office IT Stipend of $750 (or local currency equivalent) upon hire, managed via the NovaTech IT Equipment Store at https://procurement.novatech.internal. Eligible items include external 4K monitors, USB-C docking stations, ergonomic keyboards, mice, webcams, and noise-canceling headsets. Items ordered through the company portal are direct-shipped to your residential address and billed directly to the IT budget without requiring out-of-pocket expense reimbursement.",
+    "sample_questions": [
+      "How much is the WFH home office equipment stipend?",
+      "How do I order an external monitor for remote work?",
+      "Can I buy computer accessories and submit an expense report?"
+    ]
+  },
+  {
+    "id": "IT-13",
+    "domain": "IT Support",
+    "category": "Office Infrastructure",
+    "title": "Office Badge Printing and Secure Follow-Me Printing",
+    "keywords": [
+      "printing",
+      "badge printing",
+      "follow me print",
+      "papercut printer"
+    ],
+    "content": "NovaTech uses PaperCut Follow-Me secure printing across all regional offices. To print: 1. On your corporate laptop, print to the queue named 'NovaTech-Global-Print'. 2. Walk to any multi-function network printer in the office. 3. Tap your physical employee badge on the RFID card reader to unlock the machine and release your print jobs. Print jobs remain in the encrypted queue for 4 hours; unprinted jobs are automatically deleted for confidentiality.",
+    "sample_questions": [
+      "How do I print a document in the office?",
+      "What is Follow-Me printing?",
+      "How long do documents stay in the printer queue before disappearing?"
+    ]
+  },
+  {
+    "id": "IT-14",
+    "domain": "IT Support",
+    "category": "Device Management",
+    "title": "Mobile Device Management (MDM) with Jamf and Microsoft Intune",
+    "keywords": [
+      "jamf",
+      "intune",
+      "mdm profile",
+      "device compliance"
+    ],
+    "content": "All company-owned macOS devices are managed via Jamf Pro, and Windows devices via Microsoft Intune. MDM automatically pushes operating system security patches, disk encryption (FileVault / BitLocker), and anti-malware signatures (CrowdStrike Falcon). Employees are notified 7 days prior to mandatory OS updates and can defer restarts up to 3 times before an automated update occurs. Do not attempt to remove or disable the MDM configuration profile, as this will revoke access to corporate SSO and VPN.",
+    "sample_questions": [
+      "What MDM software does NovaTech use?",
+      "Can I defer operating system updates on my work laptop?",
+      "What happens if I remove the Jamf profile?"
+    ]
+  },
+  {
+    "id": "IT-15",
+    "domain": "IT Support",
+    "category": "Hardware & Equipment",
+    "title": "Returning IT Equipment upon Departure or Replacement",
+    "keywords": [
+      "return laptop",
+      "offboarding equipment",
+      "it return label",
+      "send back laptop"
+    ],
+    "content": "Upon departure from NovaTech or receipt of a replacement laptop, all corporate equipment (laptop, power adapter, company-issued monitors or phones) must be returned to IT within 10 business days. IT Logistics emails a prepaid FedEx/UPS return label with a custom-padded box to the employee's home address. Prior to shipping, employees should sign out of personal Apple IDs or browser profiles. Do not attempt a manual factory reset, as the IT depot performs automated NIST-compliant cryptographic data sanitization.",
+    "sample_questions": [
+      "How do I return my laptop when leaving the company?",
+      "Does IT provide a prepaid shipping box for returning laptops?",
+      "Should I wipe my laptop before returning it?"
+    ]
+  },
+  {
+    "id": "HR-01",
+    "domain": "HR Policies",
+    "category": "Time Off & Leave",
+    "title": "Annual Paid Time Off (PTO / Earned Leave) and Carry-Forward",
+    "keywords": [
+      "pto",
+      "earned leave",
+      "vacation days",
+      "carry forward pto",
+      "pto accrual"
+    ],
+    "content": "Full-time regular employees accrue 18 days of Paid Time Off (PTO) per calendar year, accrued at 1.5 days per completed month of service. Employees can carry forward a maximum of 5 unused PTO days into the following calendar year. Any additional accrued unused PTO days beyond the 5-day cap expire on March 31st of the new year without financial encashment, unless mandated otherwise by local statutory laws. PTO requests of 3 consecutive days or more must be submitted in the HR Workday Portal at least 2 weeks in advance and approved by your manager.",
+    "sample_questions": [
+      "How many PTO days do I get per year?",
+      "Can I carry forward unused vacation days to next year?",
+      "When do expired PTO carryover days lapse?"
+    ]
+  },
+  {
+    "id": "HR-02",
+    "domain": "HR Policies",
+    "category": "Time Off & Leave",
+    "title": "Sick and Medical Leave Policy and Medical Certificate Guidelines",
+    "keywords": [
+      "sick leave",
+      "medical leave",
+      "doctor note",
+      "medical certificate",
+      "extended sick"
+    ],
+    "content": "Employees receive 10 paid Sick and Medical Leave days per year, credited upfront on January 1st (or prorated for new hires). Sick leave is intended for personal illness, medical appointments, mental wellness recovery, or caring for an immediate sick family member. If taking 3 or more consecutive sick days, employees must provide a signed medical certificate from a licensed healthcare professional upon returning to work. Sick leave cannot be carried forward to the following calendar year and is non-encashable upon resignation.",
+    "sample_questions": [
+      "How many sick leaves per year?",
+      "How many sick leave days are provided?",
+      "Do I need a doctor's note for taking sick leave?",
+      "Can unused sick leave be encashed or carried forward?"
+    ]
+  },
+  {
+    "id": "HR-03",
+    "domain": "HR Policies",
+    "category": "Time Off & Leave",
+    "title": "Casual and Personal Leave Rules",
+    "keywords": [
+      "casual leave",
+      "personal leave",
+      "emergency leave",
+      "short notice leave"
+    ],
+    "content": "NovaTech provides 6 days of Casual / Personal Leave per calendar year. Casual leave is designed for unforeseen personal events, urgent family obligations, or religious and cultural observances not covered by public company holidays. Casual leave cannot be taken for more than 2 consecutive days at a time and cannot be combined with annual PTO without prior written approval from your People Partner. Unused casual leaves lapse on December 31st each year.",
+    "sample_questions": [
+      "How many casual leaves do I have?",
+      "Can I combine casual leave with annual vacation leave?",
+      "What is the maximum consecutive casual leave days allowed?"
+    ]
+  },
+  {
+    "id": "HR-04",
+    "domain": "HR Policies",
+    "category": "Family & Parental Support",
+    "title": "Parental Leave Policy (Maternity, Paternity, and Adoption)",
+    "keywords": [
+      "parental leave",
+      "maternity leave",
+      "paternity leave",
+      "adoption leave",
+      "baby bonding"
+    ],
+    "content": "NovaTech is committed to supporting expanding families with inclusive parental leave benefits: 1. Primary Caregiver (Maternity): 26 weeks of 100% paid leave for birthing mothers, which can begin up to 4 weeks prior to the expected delivery date. 2. Secondary Caregiver (Paternity / Partner): 12 weeks of 100% paid leave for fathers or non-birthing partners, which can be taken continuously or in 2-week increments within the first 12 months of the child's birth. 3. Adoption / Surrogacy: 16 weeks of 100% paid leave for primary adoptive parents. Benefits and stock vesting continue uninterrupted throughout all parental leave periods.",
+    "sample_questions": [
+      "What is the maternity leave duration at NovaTech?",
+      "How many weeks of paternity leave do fathers receive?",
+      "Do stock options continue to vest during parental leave?"
+    ]
+  },
+  {
+    "id": "HR-05",
+    "domain": "HR Policies",
+    "category": "Time Off & Leave",
+    "title": "Bereavement and Compassionate Leave",
+    "keywords": [
+      "bereavement leave",
+      "funeral leave",
+      "compassionate leave",
+      "death in family"
+    ],
+    "content": "In the unfortunate event of the death of a family member, NovaTech provides paid compassionate leave: 1. Immediate family (spouse, child, parent, sibling, legal guardian): Up to 5 consecutive business days of fully paid leave. 2. Extended family (grandparent, grandchild, in-laws): Up to 3 consecutive business days of fully paid leave. Additional unpaid leave or PTO may be requested if international travel is necessary. To request bereavement leave, notify your manager and People Partner via email.",
+    "sample_questions": [
+      "How many days of bereavement leave are granted for a parent or spouse?",
+      "Can I take bereavement leave for extended family members?",
+      "How do I submit a bereavement leave request?"
+    ]
+  },
+  {
+    "id": "HR-06",
+    "domain": "HR Policies",
+    "category": "Workplace Flexibility",
+    "title": "Hybrid and Remote Work (WFH) Guidelines and Core Collaboration Hours",
+    "keywords": [
+      "wfh policy",
+      "hybrid work",
+      "work from home",
+      "remote work rules",
+      "core hours"
+    ],
+    "content": "NovaTech operates on a flexible hybrid work model: 1. Hybrid Roles: Employees assigned to a regional hub are expected in the office 2 designated days per week (typically Tuesday and Thursday) for collaborative meetings. 2. Remote Roles: Designated remote employees work from their approved home residence within the hiring country. 3. Core Collaboration Hours: All employees must be accessible on Slack and Zoom during core team hours: 10:00 AM to 4:00 PM in their local regional time zone. Working from outside your country of employment is limited to 30 days per calendar year due to international corporate tax compliance and requires prior HR and Legal approval.",
+    "sample_questions": [
+      "What is the WFH policy?",
+      "What is NovaTech's hybrid work policy?",
+      "What are the mandatory core collaboration hours?",
+      "Can I work remotely from another country temporarily?"
+    ]
+  },
+  {
+    "id": "HR-07",
+    "domain": "HR Policies",
+    "category": "Travel & Expenses",
+    "title": "Business Travel and Expense Reimbursement Limits",
+    "keywords": [
+      "expense reimbursement",
+      "business travel",
+      "per diem",
+      "concur expenses",
+      "meal limit"
+    ],
+    "content": "All legitimate business expenses must be submitted via SAP Concur within 30 days of incurring the expense. Guidelines: 1. Meals: Daily per diem cap is $85 per day during business travel (Breakfast $20, Lunch $25, Dinner $40). Itemized receipts showing items purchased are mandatory for all expenses above $25; credit card charge slips alone are not accepted. 2. Air Travel: Economy class for flights under 6 hours; Premium Economy or Business Class is eligible for non-stop international flights exceeding 6 hours with VP approval. Alcohol is only reimbursable during authorized client-entertainment dinners.",
+    "sample_questions": [
+      "How do I submit a reimbursement?",
+      "What is the daily meal allowance limit for business travel?",
+      "How do I submit an expense report and what is the deadline?",
+      "Are itemized receipts required for Concur expense reports?"
+    ]
+  },
+  {
+    "id": "HR-08",
+    "domain": "HR Policies",
+    "category": "Ethics & Conduct",
+    "title": "Code of Business Conduct and Conflict of Interest",
+    "keywords": [
+      "code of conduct",
+      "conflict of interest",
+      "outside employment",
+      "moonlighting",
+      "gifts policy"
+    ],
+    "content": "The NovaTech Code of Conduct outlines our commitment to integrity, compliance, and ethical operations. Key points: 1. Conflict of Interest & Moonlighting: Employees cannot engage in secondary employment, consulting, or advisory roles with competitors or vendors. Any external board positions or freelance activities must receive written pre-clearance from the Legal & Compliance Office. 2. Gifts and Hospitality: Employees may not accept gifts, entertainment, or gratuities valued over $75 from any client, partner, or supplier. Report suspected ethical breaches to ethics@novatech.com or the confidential whistleblower hotline.",
+    "sample_questions": [
+      "Can I do freelance consulting while working at NovaTech?",
+      "What is the maximum gift value I can accept from a vendor?",
+      "How do I report an ethics violation confidentially?"
+    ]
+  },
+  {
+    "id": "HR-09",
+    "domain": "HR Policies",
+    "category": "Ethics & Conduct",
+    "title": "Prevention of Sexual Harassment (POSH) and Anti-Harassment Policy",
+    "keywords": [
+      "anti-harassment",
+      "posh",
+      "hostile work environment",
+      "report harassment",
+      "internal complaints committee"
+    ],
+    "content": "NovaTech maintains a zero-tolerance policy against discrimination, harassment, sexual harassment, and retaliation of any kind. Any unwelcome verbal, non-verbal, physical, or digital conduct that creates an intimidating, hostile, or offensive environment is strictly prohibited. Complaints can be filed directly with the Internal Complaints Committee (ICC) at posh@novatech.com or through your HR Business Partner. All investigations are conducted with strict confidentiality within 30 calendar days. Retaliation against any individual reporting harassment results in immediate termination of employment.",
+    "sample_questions": [
+      "What is the policy against workplace harassment?",
+      "How do I report harassment or discrimination?",
+      "Are harassment complaints kept confidential?"
+    ]
+  },
+  {
+    "id": "HR-10",
+    "domain": "HR Policies",
+    "category": "Performance & Career",
+    "title": "Annual Performance Review Cycle and Promotion Process",
+    "keywords": [
+      "performance review",
+      "appraisal cycle",
+      "promotions",
+      "peer feedback",
+      "performance ratings"
+    ],
+    "content": "NovaTech operates a biannual performance enablement rhythm: 1. Mid-Year Check-in (July): Informal progress review focused on OKRs, career growth, and course correction; no formal numerical ratings. 2. Annual Review (December - January): Formal evaluation consisting of self-assessment, upward/peer feedback (minimum 3 peer reviewers), and manager evaluation. Rating scale: Exceeds Expectations (EE), Consistently Meets Expectations (CME), Needs Development (ND). Merit salary increases and promotions take effect annually on April 1st.",
+    "sample_questions": [
+      "When does the annual performance review happen?",
+      "What is the performance evaluation rating scale?",
+      "When do promotional salary increases take effect?"
+    ]
+  },
+  {
+    "id": "HR-11",
+    "domain": "HR Policies",
+    "category": "Talent & Recruiting",
+    "title": "Employee Referral Bonus Program and Payout Schedule",
+    "keywords": [
+      "referral bonus",
+      "refer a candidate",
+      "referral payout",
+      "hiring referral"
+    ],
+    "content": "We encourage employees to refer top talent to NovaTech. Referral rewards: Standard Roles: $2,500; Senior / Leadership / Hard-to-Fill Roles: $5,000. Rules: 1. Candidate must be submitted through the Greenhouse recruiting portal before applying independently. 2. Payout occurs in 2 equal installments: 50% on the candidate's 30th calendar day of employment, and the remaining 50% upon successful completion of their 90-day probationary period. Both the referrer and referred employee must be active employees at the time of payout.",
+    "sample_questions": [
+      "How much is the employee referral bonus?",
+      "When is the referral bonus paid out?",
+      "How do I submit a candidate referral?"
+    ]
+  },
+  {
+    "id": "HR-12",
+    "domain": "HR Policies",
+    "category": "Health & Wellness",
+    "title": "Health, Vision, and Dental Insurance and Dependent Coverage",
+    "keywords": [
+      "health insurance",
+      "dental insurance",
+      "vision coverage",
+      "add dependents",
+      "medical benefits"
+    ],
+    "content": "NovaTech covers 100% of employee premium contributions and 80% of eligible dependent premiums for comprehensive medical, dental, and vision insurance through Blue Cross / UnitedHealthcare. Eligible dependents include spouses, domestic partners, and biological/adopted children up to age 26. Annual open enrollment takes place November 1st - November 20th. Outside of open enrollment, changes can only be made within 30 days of a Qualifying Life Event (QLE) such as marriage, birth, adoption, or loss of existing coverage by a spouse.",
+    "sample_questions": [
+      "Does NovaTech cover health insurance premiums?",
+      "When can I add my spouse or child to my health insurance?",
+      "What is a Qualifying Life Event for insurance changes?"
+    ]
+  },
+  {
+    "id": "HR-13",
+    "domain": "HR Policies",
+    "category": "Learning & Development",
+    "title": "Educational Assistance and Professional Certification Reimbursement",
+    "keywords": [
+      "education assistance",
+      "tuition reimbursement",
+      "certification reimbursement",
+      "learning stipend",
+      "udemy"
+    ],
+    "content": "To foster lifelong learning, full-time employees with at least 6 months of continuous tenure are eligible for up to $2,000 per calendar year in tuition and certification assistance. Covered items include industry certifications (AWS, GCP, PMP, CISSP), accredited university courses, and professional conference admissions relevant to your current role or defined career path. Employees must receive manager pre-approval prior to course commencement and achieve a passing score ('B' or higher, or verified certificate of completion) to submit for Concur reimbursement.",
+    "sample_questions": [
+      "How much is the annual education and certification stipend?",
+      "Does NovaTech reimburse AWS or GCP certification exams?",
+      "What score is required to receive tuition reimbursement?"
+    ]
+  },
+  {
+    "id": "HR-14",
+    "domain": "HR Policies",
+    "category": "Health & Wellness",
+    "title": "Employee Assistance Program (EAP) and Mental Wellness Services",
+    "keywords": [
+      "eap",
+      "mental health",
+      "counseling",
+      "stress management",
+      "modern health",
+      "wellness"
+    ],
+    "content": "NovaTech partners with Modern Health to provide confidential Employee Assistance Program (EAP) services at zero cost to employees and their immediate household members. Benefits include 10 free one-on-one sessions per year with licensed clinical therapists or certified life coaches, 24/7 crisis helpline support, and specialized financial and legal consultation. EAP consultations are 100% confidential; no personal data or session details are ever shared with NovaTech HR or management. Access via https://my.modernhealth.com.",
+    "sample_questions": [
+      "What mental health support does NovaTech offer?",
+      "How many free therapy sessions are provided through the EAP?",
+      "Are EAP counseling sessions confidential from my manager?"
+    ]
+  },
+  {
+    "id": "HR-15",
+    "domain": "HR Policies",
+    "category": "Performance & Career",
+    "title": "Internal Job Postings (IJP) and Department Transfer Policy",
+    "keywords": [
+      "internal transfer",
+      "ijp",
+      "switch teams",
+      "internal job application",
+      "career mobility"
+    ],
+    "content": "NovaTech promotes internal mobility and career development. Eligibility criteria: 1. Employees must complete a minimum of 12 months in their current role with a rating of 'Consistently Meets Expectations' or above and no active Performance Improvement Plan (PIP). 2. Browse open internal openings on the Greenhouse Internal Careers board. 3. You may apply and complete an exploratory interview before formally notifying your current manager; once you advance to the final interview stage, your current manager must be informed. Standard transition period between teams is 3 to 4 weeks upon acceptance of the internal offer.",
+    "sample_questions": [
+      "How long do I need to be in my role before applying for an internal transfer?",
+      "Do I have to tell my manager before applying for another team?",
+      "Where do I find internal job openings?"
+    ]
+  },
+  {
+    "id": "ONB-01",
+    "domain": "Onboarding",
+    "category": "New Hire Experience",
+    "title": "Day-One Schedule, Welcome Orientation, and Office Check-in",
+    "keywords": [
+      "day one",
+      "first day",
+      "orientation schedule",
+      "new hire schedule",
+      "welcome session"
+    ],
+    "content": "Welcome to NovaTech! Your first day begins at 9:30 AM local time. Remote hires join the virtual Zoom orientation link provided in your Welcome Email; in-office hires report to the reception desk on the 4th floor to receive their visitor pass and building badge. The day-one agenda consists of: 9:30 AM - Welcome & Company Overview with People Ops; 11:00 AM - IT Setup & Security Best Practices; 1:00 PM - Team Welcome Lunch with your Buddy; 2:30 PM - Benefits & Workplace Tools Q&A; 4:00 PM - 1:1 check-in with your direct manager.",
+    "sample_questions": [
+      "What do I do on my first day?",
+      "What time does my first day start?",
+      "What is the day-one orientation schedule?",
+      "Where do in-office new hires report on day one?"
+    ]
+  },
+  {
+    "id": "ONB-02",
+    "domain": "Onboarding",
+    "category": "Equipment & Logistics",
+    "title": "Laptop Provisioning and Day-One IT Unboxing",
+    "keywords": [
+      "laptop delivery",
+      "onboarding laptop",
+      "first time setup",
+      "laptop arrival"
+    ],
+    "content": "For remote new hires, IT ships your laptop kit to arrive 2 to 3 business days before your official start date via FedEx Priority. The package contains: laptop, USB-C 96W charger, welcome setup booklet, and a temporary One-Time Password (OTP) envelope. On morning of Day One: 1. Power on the laptop and connect to home Wi-Fi. 2. Apple Automated Device Enrollment will display 'Remote Management - NovaTech Solutions'. 3. Enter the initial username and OTP provided in your personal welcome email to complete first-time configuration.",
+    "sample_questions": [
+      "When do I get my laptop?",
+      "When will my onboarding laptop arrive?",
+      "How do I set up my laptop on my first day?",
+      "What should I do if my laptop hasn't arrived by my start date?"
+    ]
+  },
+  {
+    "id": "ONB-03",
+    "domain": "Onboarding",
+    "category": "Compliance & Documentation",
+    "title": "Form I-9 Identity Verification and Statutory Compliance",
+    "keywords": [
+      "i-9 verification",
+      "identity verification",
+      "passport verification",
+      "employment eligibility"
+    ],
+    "content": "Federal and statutory regulations require all new hires to complete Form I-9 (Employment Eligibility Verification) within 3 business days of their start date: Section 1 must be completed electronically in your Workday onboarding portal on or before Day One. Section 2 requires in-person document inspection. Remote employees will receive an automated link from our authorized verification partner (Equifax / I-9 Anywhere) to schedule an appointment at an authorized local center or complete verification with a designated remote notary.",
+    "sample_questions": [
+      "When must Form I-9 be completed?",
+      "How do remote employees complete Section 2 of Form I-9?",
+      "What documents are needed for employment eligibility verification?"
+    ]
+  },
+  {
+    "id": "ONB-04",
+    "domain": "Onboarding",
+    "category": "New Hire Experience",
+    "title": "New Hire Onboarding Buddy Program",
+    "keywords": [
+      "buddy program",
+      "onboarding buddy",
+      "peer mentor",
+      "new hire buddy"
+    ],
+    "content": "Every new hire is assigned a designated 'NovaTech Buddy' from their peer team for the first 90 days. Your Buddy is a peer colleague who helps you navigate company culture, unblock development environment hurdles, understand team rituals, and introduce you to cross-functional partners. Buddies meet with you daily during Week 1, twice weekly during Weeks 2-4, and bi-weekly thereafter. Your buddy is not your evaluator, so feel free to ask them any practical or informal questions.",
+    "sample_questions": [
+      "What is the role of an Onboarding Buddy?",
+      "How often do I meet with my onboarding buddy?",
+      "Who assigns my buddy?"
+    ]
+  },
+  {
+    "id": "ONB-05",
+    "domain": "Onboarding",
+    "category": "Compliance & Documentation",
+    "title": "Mandatory Compliance Training Requirements and Deadlines",
+    "keywords": [
+      "compliance training",
+      "security awareness training",
+      "mandatory training",
+      "learning portal"
+    ],
+    "content": "All new employees must complete mandatory compliance learning modules within their first 14 calendar days via the NovaTech Learning Portal (https://learn.novatech.internal). Required modules include: 1. Information Security & Phishing Awareness (45 mins); 2. Anti-Bribery, FCPA & Ethical Business Conduct (30 mins); 3. Preventing Harassment & Discrimination (POSH) (60 mins); 4. Data Privacy & GDPR/CCPA Fundamentals (30 mins). Failure to complete mandatory training by Day 14 results in temporary suspension of internal production code and database access.",
+    "sample_questions": [
+      "What mandatory trainings must I complete upon joining?",
+      "What is the deadline for new hire compliance training?",
+      "What happens if I don't finish compliance training on time?"
+    ]
+  },
+  {
+    "id": "ONB-06",
+    "domain": "Onboarding",
+    "category": "Health & Wellness",
+    "title": "New Hire Benefits Enrollment 30-Day Window",
+    "keywords": [
+      "benefits enrollment deadline",
+      "new hire benefits",
+      "choose health plan",
+      "30 day enrollment"
+    ],
+    "content": "New hires have exactly 30 calendar days from their start date to select and submit their health, dental, vision, life, and disability insurance elections in Workday. Benefits coverage is retroactive to your official hire date. If you fail to submit elections within the 30-day window, you will automatically be enrolled in the default Employee-Only Basic Health Plan, and you will be unable to add dependents or change coverage until the next annual Open Enrollment in November, unless you experience a Qualifying Life Event.",
+    "sample_questions": [
+      "How do I enrol in insurance?",
+      "How do I enroll in insurance?",
+      "How long do I have to enroll in health benefits after joining?",
+      "Is my insurance coverage retroactive to my first day?",
+      "What happens if I miss the 30-day benefits enrollment deadline?"
+    ]
+  },
+  {
+    "id": "ONB-07",
+    "domain": "Onboarding",
+    "category": "Compensation & Payroll",
+    "title": "Direct Deposit and Bank Account Setup",
+    "keywords": [
+      "direct deposit setup",
+      "bank account",
+      "payroll setup",
+      "routing number"
+    ],
+    "content": "To ensure timely delivery of your first paycheck, enter your direct deposit bank details in the Workday portal under 'Pay > Payment Elections' no later than the 5th day of your first month. You may split direct deposit into up to 3 separate accounts (e.g., primary checking, savings). Required fields: Bank Name, 9-digit Routing Transit Number, and Account Number. Bank accounts must be in the legal employee's name. Any submissions after the monthly payroll cutoff will be issued via physical paper check mailed to your residential address.",
+    "sample_questions": [
+      "How do I set up direct deposit for my salary?",
+      "Can I split my salary into two different bank accounts?",
+      "What is the deadline to submit bank account details for payroll?"
+    ]
+  },
+  {
+    "id": "ONB-08",
+    "domain": "Onboarding",
+    "category": "Performance & Career",
+    "title": "Probation Period Duration and Confirmation Review",
+    "keywords": [
+      "probation period",
+      "probation review",
+      "confirmation",
+      "90 day review"
+    ],
+    "content": "All new regular full-time employees undergo a standard 90-day probationary period. During this period, your manager will conduct regular 30, 60, and 90-day progress check-ins against onboarding 30-60-90 day deliverables. At the 85-day mark, People Ops triggers the formal Probation Confirmation form in Workday. Upon mutual manager and HR approval, you will receive a formal confirmation letter. In rare cases where onboarding milestones require further evaluation, probation may be extended for up to an additional 30 days.",
+    "sample_questions": [
+      "How long is the employee probation period?",
+      "What happens at the end of the 90-day probation?",
+      "Can probation be extended?"
+    ]
+  },
+  {
+    "id": "ONB-09",
+    "domain": "Onboarding",
+    "category": "New Hire Experience",
+    "title": "Company Swag and Welcome Kit Delivery",
+    "keywords": [
+      "swag store",
+      "welcome kit",
+      "company t-shirt",
+      "backpack",
+      "swag points"
+    ],
+    "content": "During your first week, you will receive an invitation email from the NovaTech Swag Portal (swag.novatech.internal) containing 1,500 Swag Points credited to your account. You can select your personalized welcome pack including NovaTech branded apparel (hoodie or polo), insulated water bottle, North Face laptop backpack, and notebook. Items are shipped directly to your home address free of charge within 10 business days.",
+    "sample_questions": [
+      "Do new hires get company swag?",
+      "How do I order my welcome kit hoodie and backpack?",
+      "When do swag points expire?"
+    ]
+  },
+  {
+    "id": "ONB-10",
+    "domain": "Onboarding",
+    "category": "Communication & Channels",
+    "title": "Essential Slack Channels for New Hires",
+    "keywords": [
+      "slack channels",
+      "important channels",
+      "where to ask questions",
+      "welcome channel"
+    ],
+    "content": "Here are the essential Slack channels every new hire should join during their first week: 1. #welcome-novatech (say hello and introduce yourself to the company); 2. #ask-it (quick IT help and outage notices); 3. #ask-hr (benefits, leaves, policy clarifications); 4. #all-hands (announcements and monthly town hall links); 5. #shoutouts (celebrating teammate achievements); 6. Your specific departmental channel (e.g., #eng-core, #sales-enablement, #product-announcements). Join social and affinity ERG channels via the Slack channel browser.",
+    "sample_questions": [
+      "Which Slack channels should I join as a new hire?",
+      "Where do I post my new hire introduction?",
+      "What channel do I use for quick IT questions on Slack?"
+    ]
+  },
+  {
+    "id": "PAY-01",
+    "domain": "Payroll & Compensation",
+    "category": "Pay Schedule",
+    "title": "Monthly Payday Schedule and Cutoff Dates",
+    "keywords": [
+      "payday",
+      "when do we get paid",
+      "salary date",
+      "payroll schedule",
+      "cutoff date"
+    ],
+    "content": "NovaTech distributes salary payments on a semi-monthly schedule for US employees (15th and the last business day of each month) and on a monthly schedule (the 25th of each month) for international subsidiaries. If the scheduled payday falls on a weekend or public bank holiday, funds are credited on the immediate preceding business day. Payroll adjustments (bonus payouts, overtime, unpaid leave deductions) close on the 10th of the month for mid-month payroll and on the 20th for month-end payroll.",
+    "sample_questions": [
+      "When is payday?",
+      "What happens if payday falls on a weekend?",
+      "What is the monthly payroll adjustment cutoff date?"
+    ]
+  },
+  {
+    "id": "PAY-02",
+    "domain": "Payroll & Compensation",
+    "category": "Statements & Taxes",
+    "title": "Accessing Paystubs and Year-End Tax Statements (W-2 / Form 16)",
+    "keywords": [
+      "paystub",
+      "w-2",
+      "form 16",
+      "view payslip",
+      "tax statement download"
+    ],
+    "content": "Digital paystubs are available 2 business days prior to each payday via the Workday mobile app or web portal under 'Pay > View Payslips'. Payslips detail gross pay, statutory withholdings (federal/state taxes, social security), benefit deductions, and year-to-date totals. Annual tax statements (Form W-2 for US employees, Form 16 for India employees) are uploaded digitally no later than January 31st each year. Employees are notified via email when tax forms become available for download.",
+    "sample_questions": [
+      "Where can I view and download my paystubs?",
+      "When will my W-2 or annual tax statement be available?",
+      "How do I see my salary deductions?"
+    ]
+  },
+  {
+    "id": "PAY-03",
+    "domain": "Payroll & Compensation",
+    "category": "Statements & Taxes",
+    "title": "Annual Tax Declarations and Withholding Adjustments",
+    "keywords": [
+      "tax declaration",
+      "w-4",
+      "withholding tax",
+      "investment proofs",
+      "tax saving"
+    ],
+    "content": "Employees can update their tax withholding preferences (Form W-4 allowances or state withholding) anytime throughout the year in Workday under 'Pay > Withholding Elections'. For employees subject to investment proof verification, the declaration window opens on April 1st and final proof submission closes on January 15th of the tax year. Failure to upload valid investment proofs by January 15th results in standard automated tax deductions without provisional relief on remaining paychecks.",
+    "sample_questions": [
+      "How do I submit my tax declaration?",
+      "How do I update my W-4 tax withholding?",
+      "When is the deadline for submitting investment proofs for taxes?",
+      "Can I change my tax withholding allowances mid-year?"
+    ]
+  },
+  {
+    "id": "PAY-04",
+    "domain": "Payroll & Compensation",
+    "category": "Retirement & Savings",
+    "title": "401(k) and Retirement Plan Company Match",
+    "keywords": [
+      "401k",
+      "retirement plan",
+      "company match",
+      "fidelity 401k",
+      "pension"
+    ],
+    "content": "NovaTech offers a dollar-for-dollar 401(k) company match up to 5% of eligible base salary through Fidelity Investments. Employees are eligible to participate beginning on their first day of full-time employment. Company matching funds vest immediately (100% immediate vesting from Day 1). Employees can choose Traditional (pre-tax) or Roth (post-tax) contributions up to the statutory IRS annual limit. Manage your election and fund allocations directly on netbenefits.fidelity.com.",
+    "sample_questions": [
+      "Does NovaTech offer a 401(k) company match?",
+      "What is the vesting schedule for 401(k) matching funds?",
+      "Where do I manage my retirement contribution percentage?"
+    ]
+  },
+  {
+    "id": "PAY-05",
+    "domain": "Payroll & Compensation",
+    "category": "Incentives & Bonuses",
+    "title": "Annual Performance Bonus and Variable Incentive Criteria",
+    "keywords": [
+      "annual bonus",
+      "variable pay",
+      "bonus payout date",
+      "company multiplier"
+    ],
+    "content": "Annual performance bonuses are determined by a combination of overall company performance (Corporate Multiplier: 0% to 150%) and individual performance evaluation ratings (Individual Multiplier: 0% to 130%). Target bonus percentages are defined in your employment contract (typically 10% to 25% of annual base salary). Bonus payouts are processed in the March 31st payroll cycle following the annual review. To be eligible for payout, an employee must have joined prior to October 1st and remain actively employed on the payout date.",
+    "sample_questions": [
+      "When is the annual performance bonus paid?",
+      "How is the bonus amount calculated?",
+      "Am I eligible for bonus if I joined mid-year?"
+    ]
+  },
+  {
+    "id": "PAY-06",
+    "domain": "Payroll & Compensation",
+    "category": "Equity & Stock Options",
+    "title": "Equity, Restricted Stock Units (RSUs), and Stock Options Vesting",
+    "keywords": [
+      "rsu vesting",
+      "stock options",
+      "equity vesting schedule",
+      "one year cliff",
+      "shareworks",
+      "carta"
+    ],
+    "content": "NovaTech equity grants (RSUs or Stock Options) are administered via Carta. Standard vesting schedule: A 4-year vesting timeline with a 1-year cliff. Specifically: 25% of total grant vests exactly on the 1-year anniversary of your Vesting Start Date. Following the 1-year cliff, the remaining 75% vests in equal quarterly increments (6.25% per quarter) over the subsequent 36 months. Quarterly vesting dates are March 15, June 15, September 15, and December 15. View grant letters and exercised shares at https://carta.com.",
+    "sample_questions": [
+      "How does vesting work?",
+      "What is the stock option / RSU vesting schedule?",
+      "What is the 1-year cliff for equity grants?",
+      "Where can I see my vested and unvested shares?"
+    ]
+  },
+  {
+    "id": "PAY-07",
+    "domain": "Payroll & Compensation",
+    "category": "Overtime & Special Pay",
+    "title": "On-Call Compensation and Overtime Policy",
+    "keywords": [
+      "on-call pay",
+      "pagerduty compensation",
+      "overtime pay",
+      "incident response pay"
+    ],
+    "content": "Engineering and technical operations personnel assigned to primary production on-call rotation schedules receive dedicated on-call compensation: 1. Base On-Call Allowance: $350 per full week on primary on-call rotation ($175 for secondary backup), regardless of whether incidents occur. 2. Incident Response: If paged outside standard business hours for a P1/P0 production incident, engineers receive compensatory time off (Comp Off) equivalent to 1.5x time spent troubleshooting, rounded up to the nearest hour. Submit on-call tracking via PagerDuty monthly sync.",
+    "sample_questions": [
+      "How much is the engineering on-call rotation stipend?",
+      "Do I get comp off for handling late-night P0 incidents?",
+      "How is on-call pay reported?"
+    ]
+  },
+  {
+    "id": "PAY-08",
+    "domain": "Payroll & Compensation",
+    "category": "Commuter & Transit",
+    "title": "Commuter Benefits and Transit Pass Subsidies",
+    "keywords": [
+      "commuter benefits",
+      "transit pass",
+      "parking subsidy",
+      "pre-tax transit"
+    ],
+    "content": "Employees working from a regional physical office are eligible for pre-tax commuter benefits administered through Edenred. You can set aside up to the IRS monthly pre-tax limit (currently $315/month) for qualified public transportation (subway, train, commuter bus) and $315/month for qualified parking. Additionally, NovaTech provides a direct $50/month company transit subsidy for employees utilizing green public transit instead of driving single-occupancy vehicles. Enroll by the 10th of the prior month via Edenred portal.",
+    "sample_questions": [
+      "Does NovaTech offer commuter transit benefits?",
+      "How much pre-tax money can I set aside for public transit?",
+      "Is there a company transit subsidy for taking the train or subway?"
+    ]
+  },
+  {
+    "id": "PAY-09",
+    "domain": "Payroll & Compensation",
+    "category": "Separation & Settlement",
+    "title": "Final Settlement and Severance Calculations",
+    "keywords": [
+      "final settlement",
+      "resignation pay",
+      "severance pay",
+      "encashment of leave on exit"
+    ],
+    "content": "Upon voluntary resignation or involuntary termination, an employee's final settlement (Full & Final) is processed in accordance with local labor statutes. The final settlement encompasses: prorated salary up to the final working day, encashment of eligible accrued unused PTO days (capped at statutory maximums), reimbursement of approved outstanding Concur expense claims, and any deduction for unreturned company assets. Final settlement disbursements are issued via standard direct deposit within 30 days of the last working day.",
+    "sample_questions": [
+      "When is the final settlement paycheck issued after resignation?",
+      "Do I get paid for unused PTO when leaving the company?",
+      "What deductions are made in the final settlement?"
+    ]
+  },
+  {
+    "id": "PAY-10",
+    "domain": "Payroll & Compensation",
+    "category": "Relocation & Moving",
+    "title": "Relocation Assistance and Moving Reimbursement Package",
+    "keywords": [
+      "relocation package",
+      "moving expenses",
+      "relocation reimbursement",
+      "relocation clawback"
+    ],
+    "content": "Employees hired into roles requiring physical relocation closer to a corporate hub may receive a lump-sum relocation package (typically $5,000 to $15,000 based on tier and household size), managed through our global mobility partner Cartus. Relocation packages cover moving van logistics, temporary housing for up to 30 days, and transit airfare. Relocation agreements include a standard 12-month clawback clause: if an employee voluntarily resigns within 12 months of relocation, a prorated portion of the relocation grant must be repaid to NovaTech.",
+    "sample_questions": [
+      "Does NovaTech provide relocation assistance?",
+      "What does the relocation package cover?",
+      "Is there a repayment clawback clause for relocation assistance?"
+    ]
+  }
+]
